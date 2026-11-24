@@ -1,0 +1,1 @@
+Las pruebas heredadas de la EP2 para localStorage fueron reemplazadas funcionalmente por la API. No son válidas para el nuevo flujo de login. Se deben implementar tests de integración contra Spring Boot.
