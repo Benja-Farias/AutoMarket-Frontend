@@ -34,6 +34,7 @@ export async function logout() {
   finally {
     setAccessToken('');
     sessionStorage.removeItem(SESSION_KEY);
+    localStorage.setItem('automarket:logout-event', String(Date.now()));
     window.dispatchEvent(new Event('automarket:session'));
   }
 }

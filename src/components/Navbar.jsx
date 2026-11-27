@@ -63,13 +63,26 @@ export default function Navbar({ usuario = null, onLogout = () => { } }) {
               </span>
             </li>
 
-            {usuario?.rol === 'ADMIN' && <li className="nav-item"><NavLink className={claseLink} to="/admin">Administración</NavLink></li>}
             {usuario ? (
-              <li className="nav-item ms-lg-2 d-flex align-items-center gap-2">
-                <span className="fw-medium">Hola, {usuario.nombre}</span>
-                <button type="button" className="btn btn-outline-secondary btn-sm rounded-pill" onClick={onLogout}>
-                  Salir
+              <li className="nav-item dropdown ms-lg-2">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary rounded-3 dropdown-toggle d-flex align-items-center gap-2 px-3"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  aria-label={`Opciones de usuario de ${usuario.nombre}`}
+                >
+                  <i className="bi bi-person-circle" aria-hidden="true" />
+                  <span>{usuario.nombre}</span>
                 </button>
+                <ul className="dropdown-menu dropdown-menu-end shadow-sm">
+                  <li><Link className="dropdown-item" to="/mi-cuenta">Mi cuenta</Link></li>
+                  {usuario.rol === 'ADMIN' && (
+                    <li><a className="dropdown-item" href="/gestion/">Panel de control</a></li>
+                  )}
+                  <li><hr className="dropdown-divider" /></li>
+                  <li><button type="button" className="dropdown-item" onClick={onLogout}>Cerrar sesión</button></li>
+                </ul>
               </li>
             ) : (
               <>
