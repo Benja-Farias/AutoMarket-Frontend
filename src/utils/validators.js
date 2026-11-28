@@ -33,6 +33,7 @@ export function validateComment(comentario = '') {
 function correoSimple(correo = '') {
   const valor = correo.trim();
   if (valor === '') return 'El correo es obligatorio.';
+  if (valor.length > MAX_CORREO) return `El correo no puede superar los ${MAX_CORREO} caracteres.`;
   if (!FORMATO_EMAIL.test(valor)) return 'Ingresa un correo válido.';
   return '';
 }
