@@ -33,7 +33,7 @@ export function validateComment(comentario = '') {
 function correoSimple(correo = '') {
   const valor = correo.trim();
   if (valor === '') return 'El correo es obligatorio.';
-  if (!valor.includes('@')) return 'Ingresa un correo válido.';
+  if (!FORMATO_EMAIL.test(valor)) return 'Ingresa un correo válido.';
   return '';
 }
 
@@ -48,7 +48,7 @@ export function validateSignup({ nombre, correo, password }) {
   return {
     nombre: validateName(nombre),
     correo: correoSimple(correo),
-    password: password ? '' : 'La contraseña es obligatoria.',
+    password: !password ? 'La contraseña es obligatoria.' : password.length < 8 ? 'La contraseña debe tener al menos 8 caracteres.' : '',
   };
 }
 
